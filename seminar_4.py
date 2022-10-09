@@ -78,10 +78,10 @@ def generate_superscript(x, n):
         return str(x)
     if n == 1:
         return str(x)+"x"
-    superscript = ["⁰", "¹", "²", "³", "⁴", "⁵", "⁶", "⁷", "⁸", "⁹"]
+    superscript = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
     result = str(x)
     if x != 0:
-        result += "x"
+        result += "x**"
     for i in str(n):
         result += superscript[int(i)]
     return result
@@ -94,8 +94,26 @@ def generate_polynomial(k):
         if coefficient != 0:
             result.append(generate_superscript(coefficient, i))
     return "+".join(result)
-
-res=str(generate_polynomial(10))
+with open('result.txt','w') as res:
+    res.write(generate_polynomial(10))
+    res=(generate_polynomial(10))
 
 print(res)
-   #with open('result.txt','a') as res:
+
+#############################################################
+
+# №5. Даны два файла, в каждом из которых находится запись многочлена. 
+# Задача - сформировать файл, содержащий сумму многочленов.
+# with open('result_1.txt','w') as res:
+#     res.write('33x**10+22x**9+39x**8+96x**7+47x**6+7x**5+6x**4+22x**3+38x**2+37x+98')
+
+with open('result.txt','r') as file:
+    o_1 = file.readline()
+    l_1 = o_1.split()
+with open('result_1.txt','r') as file:
+    o_2 = file.readline()
+    l_2 = o_2.split()
+print(f'{l_1} + {l_2}')
+sum_poly = l_1 + l_2
+with open('sum_rez.txt', 'w') as file:
+    file.write(f'{l_1} + {l_2}')
